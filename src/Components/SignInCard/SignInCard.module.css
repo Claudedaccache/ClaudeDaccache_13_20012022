@@ -10,7 +10,7 @@
   background-color: #00bc77;
   color: #fff;
   text-decoration: underline;
-  text-decoration-thickness: 0.5px;
+  text-decoration-thickness: 2px;
 }
 
 .signInContent {
@@ -33,6 +33,7 @@
   margin-top: 1.2rem;
   margin-bottom: 1rem;
 }
+
 
 .inputRemember {
   display: flex;

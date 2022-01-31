@@ -3,69 +3,88 @@ import styles from "../TransactionAccordion/TransactionAccordion.module.css";
 import PropTypes from "prop-types";
 
 const TransactionAccordion = (props) => {
+  const displayDropdown = (container) => {
+    if (container === "CategoryIcon") {
+      const CategoryIcon = document.querySelector(".CategoryIcon");
+      const categoryValues = document.querySelector(".categoryValues");
+      CategoryIcon.style.display = "none";
+      console.log(categoryValues);
+      categoryValues.style.display = "block";
+    }
+    if (container === "NoteIcon") {
+      const NoteIcon = document.querySelector(".NoteIcon");
+      const NoteValue = document.querySelector(".categoryValues");
+      NoteIcon.style.display = "none";
+      NoteValue.style.display = "block";
+    }
+  };
+
   return (
     <>
-      <div className={styles.accordion}  key={props.KeyId}>
-       
-        <div className={styles.accordionItem}>
-          <h2
-            className={`accordion-header ${styles.accordionHeader}`}
+      <div className={styles.accordionItem}>
+        <h2 className="accordion-header">
+          <button
+            className={`accordion-button collapsed ${styles.accordionBtn}`}
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target={props.itemDataId}
+            aria-expanded="false"
           >
-            <button
-              className={`accordion-button collapsed ${styles.accordionBtn}`}
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target={props.itemDataId}
-              aria-expanded="false"
-            >
+            <span className={styles.btnInnerText}>
               <span>{props.Balance}</span>
               <span>{props.Amount}</span>
               <span>{props.Description}</span>
               <span>{props.Date}</span>
-            </button>
-          </h2>
-          <div
-        id={props.itemId}
-        className="accordion-collapse collapse"
-        data-bs-parent={props.itemDataId}
-          >
-            <div className={`accordion-body ${styles.accordionBody}`}>
-              <strong>This is the first item's accordion body.</strong> It is
-              shown by default, until the collapse plugin adds the appropriate
-              that we use to style each element. These control the overall
+            </span>
+          </button>
+        </h2>
+        <div
+          id={props.itemId}
+          className="accordion-collapse collapse"
+          data-bs-parent={props.itemDataId}
+        >
+          <div className={`accordion-body ${styles.accordionBody}`}>
+            <div className="d-flex flex-row justify-content-start align-items-baseline">
+              <p>Transaction Type: </p>
+              <p className="mx-2">Electronic</p>
+            </div>
+            <div className="d-flex flex-row justify-content-start align-items-baseline">
+              <p>Category: </p>
+              <p className="mx-2">
+                Food{" "}
+                <i
+                  className="fas fa-pen mx-2 CategoryIcon"
+                  onClick={() => displayDropdown("CategoryIcon")}
+                ></i>
+              </p>
+              <select
+                defaultValue={"DEFAULT"}
+                className={styles.categoryValues}
+              >
+                <option value="DEFAULT" disabled>
+                  Choose a salutation ...
+                </option>
+                <option value="1">Mr</option>
+                <option value="2">Mrs</option>
+                <option value="3">Ms</option>
+                <option value="4">Miss</option>
+                <option value="5">Dr</option>
+              </select>
+            </div>
+            <div className="d-flex flex-row justify-content-start align-items-baseline">
+              <p>Notes: </p>
+              <i
+                className="fas fa-pen mx-2 NoteIcon"
+                onClick={() => displayDropdown("NoteIcon")}
+              ></i>
+              <input
+                type="text"
+                className={styles.NoteValue}
+                placeholder="write a note here"
+              />
             </div>
           </div>
         </div>
-        {/* <div className="accordion-item">
-          <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
-            <button
-              className="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#panelsStayOpen-collapseTwo"
-              aria-expanded="false"
-              aria-controls="panelsStayOpen-collapseTwo"
-            >
-              Accordion Item #2
-            </button>
-          </h2>
-          <div
-            id="panelsStayOpen-collapseTwo"
-            className="accordion-collapse collapse"
-            aria-labelledby="panelsStayOpen-headingTwo"
-          >
-            <div className="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
-            </div>
-          </div>
-        </div> */}
       </div>
     </>
   );

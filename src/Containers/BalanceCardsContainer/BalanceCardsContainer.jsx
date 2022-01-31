@@ -1,10 +1,11 @@
 import React from "react";
 import BalanceCards from "../../Components/BalanceCards/BalanceCards";
+import styles from "../BalanceCardsContainer/BalanceCardsContainer.module.css"
 import PropTypes from "prop-types";
 
 function BalanceCardsContainer(props) {
   return (
-    <div>
+    <div className={styles.container}>
       <BalanceCards
         accountTitle="Argent Bank Checking (x8349)"
         accountAmount="2,082.79"

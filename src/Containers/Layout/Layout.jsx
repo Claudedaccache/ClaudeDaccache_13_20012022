@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 function Layout(props) {
   return (
     <>
-      <Header navText="Sign In" />
+      <Header  userName="Tony"/>
       {props.children}
       <Footer Text="Copyright 2022 Argent Bank" />
     </>

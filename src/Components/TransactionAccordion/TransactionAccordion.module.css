@@ -1,31 +1,46 @@
 
 
-.accordion{
+.accordion {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 2rem;
+  /* margin: 2rem; */
 }
 
 .accordionItem {
   width: 80%;
-  /* margin: 2rem; */
+  margin: 0.1rem 2rem 0.2rem 2rem;
+
 }
 
-.accordionBtn{
+.btnInnerText{
+  width: 100%;
   display: flex;
-  flex-direction: row-reverse ;
-  justify-content: space-between !important;
+  flex-direction: row-reverse;
+  justify-content: space-between;
   align-items: center;
 }
 
+
+.accordionBtn {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .accordionBody {
   background: #f7f7f7;
   color: black;
 }
-/* .accordionBtn.collapsed::before,
-.accordionBtn:not(.collapsed)::before  {
-  margin:auto !important;
-} */
+.accordionBtn.collapsed::after,
+.accordionBtn:not(.collapsed)::after {
+  margin-left: 0 !important;
+  margin-right: 2rem;
+}
+
+.categoryValues, .NoteValue{
+  display: none;
+  margin-left: 1rem;
+}

@@ -22,7 +22,13 @@ body {
 .MainBgContainer {
   display: block;
   background-color: #12002b;
-  overflow:auto
+  overflow:auto;
+height: 100vh;}
+
+.header {
+  margin-top: 1.2rem;
+  color: #fff;
+  margin-bottom: 2rem;
 }
 
 

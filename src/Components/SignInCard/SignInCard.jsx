@@ -1,38 +1,56 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styles from "../SignInCard/SignInCard.module.css";
 
-export class SignInCard extends Component {
-  static propTypes = {};
+const SignInCard = () => {
+  // const users = useSelector((state) => state);
+  // console.log(users);
 
-  render() {
-    return (
-        <section className={styles.signInContent}>
-          <i className={`fa fa-user-circle ${styles.signInIcon}`}></i>
-          <h1>Sign In</h1>
-          <form>
-            <div className={styles.inputWrapper}>
-              <label htmlFor="username">Username</label>
-              <input type="text" id="username" />
-            </div>
-            <div className={styles.inputWrapper}>
-              <label htmlFor="password">Password</label>
-              <input type="password" id="password" />
-            </div>
-            <div className={styles.inputRemember}>
-              <input type="checkbox" id="remember-me" />
-              <label htmlFor="remember-me">Remember me</label>
-            </div>
-            {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
-            {/* <a href="./user.html" className={styles.signInButton}>
-                Sign In
-              </a> */}
-            {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-            <button className={styles.signInButton}>Sign In</button>
-          </form>
-        </section>
-    );
-  }
-}
+  const handleChange = ({ currentTarget }) => {
+    const { name, value } = currentTarget;
+    console.log(`${name} : ${value}`);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log("form block")
+  };
+
+  return (
+    <section className={styles.signInContent}>
+      <i className={`fa fa-user-circle ${styles.signInIcon}`}></i>
+      <h1>Sign In</h1>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.inputWrapper}>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.inputWrapper}>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={handleChange}
+          />
+        </div>
+        <div className={styles.inputRemember}>
+          <input type="checkbox" id="remember-me" />
+          <label htmlFor="remember-me">Remember me</label>
+        </div>
+        <Link to="/user/12" className={styles.signInButton}>
+          Sign In
+        </Link>
+      </form>
+    </section>
+  );
+};
 
 export default SignInCard;

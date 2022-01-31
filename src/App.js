@@ -1,54 +1,45 @@
 import "./App.css";
-
-import Layout from "./Containers/Layout/Layout";
-
-import CoverImg from "./Components/CoverImg/CoverImg";
-import CardsContainer from "./Containers/CardsContainer(home)/CardsContainer";
-import SignInCard from "./Components/SignInCard/SignInCard";
-import Greeting from "./Components/Greeting/Greeting";
-import BalanceCardsContainer from "./Containers/BalanceCardsContainer/BalanceCardsContainer";
-import { Routes, Route, Link } from "react-router-dom";
-import EditName from "./Components/EditName/EditName";
-import TransactionBalance from "./Components/TransactionBalance/TransactionBalance";
-import TransactionAccordion from "./Components/TransactionAccordion/TransactionAccordion";
+import { Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import SignIn from "./Pages/SignIn";
+import UserProfile from "./Pages/UserProfile";
+import Transactions from "./Pages/Transactions";
+import { useState } from "react";
+import { hasAuthenticated } from "./Services/AuthApi";
+import Auth from "./Contexts/Auth";
+import AuthenticatedRoute from "./Components/AuthenticatedRoute";
+import Error from "./Components/Error/Error";
+import ErrorPage from "./Pages/Error";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated());
   return (
-    <div className="App">
-      {/* <Routes> */}
-      <Layout>
-        {/* <Route path="/" element={<Home />} />
-          <Route path="/SignIn" element={<SignIn />} />
-          <Route path="/user/:id" element={<UserProfile />} />
-          <Route path="/edit/:id" element={<NameModification />} />
-          <Route path="/user/:id/transactions" element={<UserProfile />} /> */}
-
-        <div className="MainBgContainer">
-          <TransactionBalance
-            accountTitle="Argent Bank Credit Card (x8349)"
-            accountAmount="184.30"
-            accountAmountDescription="Current Balance"
+    <Auth.Provider value={{ isAuthenticated }}>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/user/signIn" element={<SignIn />} />
+          <Route
+            path="/user/:id"
+            element={
+              <AuthenticatedRoute>
+                <UserProfile />
+              </AuthenticatedRoute>
+            }
           />
-          <TransactionAccordion
-            Balance="Balance"
-            Amount="Amount"
-            Description="Description"
-            Date="Date"
-            KeyId={"Equipment"}
-            itemId={"collapseTwo"}
-            itemDataId={"#collapseTwo"}
-                     />
-          {/* <CoverImg />
-            <CardsContainer /> */}
-          {/* <SignInCard /> */}
-          {/* <Greeting name="Tony Jarvis"/>*/}
-          {/* <EditName name="Tony" buttonText="save"/> */}
-
-          {/* <BalanceCardsContainer /> */}
-        </div>
-      </Layout>
-      {/* </Routes> */}
-    </div>
+          <Route
+            path="/user/:id/transactions"
+            element={
+              <AuthenticatedRoute>
+                <Transactions />
+              </AuthenticatedRoute>
+            }
+          />
+          <Route path="*" element={<ErrorPage/>}/>
+          {/* <Route path="/edit/:id" element={<NameEditing />} /> */}
+        </Routes>
+      </div>
+    </Auth.Provider>
   );
 }
 

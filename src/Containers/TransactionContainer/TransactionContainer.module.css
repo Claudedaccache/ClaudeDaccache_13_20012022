@@ -1,0 +1,36 @@
+.accordion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.accordionHead {
+  width: 80%;
+}
+
+.accordionHeadContent {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: white;
+}
+
+.accordionHeadText {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.accordionHeadContent > span {
+  font-size: 1rem;
+}
+
+.arrow {
+  color: transparent;
+  font-size: 1rem;
+  margin-right: 2rem;
+  cursor: none;
+}
