@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import Layout from "../Containers/Layout/Layout";
 import Greeting from "../Components/Greeting/Greeting";
 import BalanceCardsContainer from "../Containers/BalanceCardsContainer/BalanceCardsContainer";
 import { EditContext } from "../Contexts/EditContext";
 import EditName from "../Components/EditName/EditName";
+import { useDispatch, useSelector } from "react-redux";
 
 function UserProfile(props) {
   const [showProfile, setShowProfile] = useState(false);
   const [UserName, setUserName] = useState("Tony");
   const [UserFamilyName, setUserFamilyName] = useState("Jarvis");
+
+ 
+  // const userFirstName = useSelector(state => state.testing)
+  // console.log(userFirstName);
+
+
 
   return (
     <div>
@@ -41,6 +47,5 @@ function UserProfile(props) {
   );
 }
 
-UserProfile.propTypes = {};
 
 export default UserProfile;

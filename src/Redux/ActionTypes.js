@@ -1,2 +1,4 @@
-export const EditUserName = "EditUserName";
-export const yy = "";
+export const EDIT_USER_FIRSTNAME = "EDIT_USER_NAME";
+export const EDIT_USER_FAMILYNAME = "EDIT_USER_FAMILYNAME";
+export const ADD_USER_TRANSACTION_CATEGORY = "ADD_USER_TRANSACTION_CATEGORY";
+export const ADD_USER_TRANSACTION_NOTE = "ADD_USER_TRANSACTION_NOTE";

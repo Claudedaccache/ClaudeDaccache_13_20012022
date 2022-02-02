@@ -48,3 +48,9 @@
 
 } 
 
+@media (max-width: 720px) {
+  .inputWrapper {
+    max-width: 8rem;
+  }
+}
+

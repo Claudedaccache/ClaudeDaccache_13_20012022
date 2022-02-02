@@ -1,16 +1,19 @@
 import IconChat from "../../img/icon-chat.png";
-import IconMoney from "../../img/icon-money.png"
-import IconSecurity from "../../img/icon-security.png"
+import IconMoney from "../../img/icon-money.png";
+import IconSecurity from "../../img/icon-security.png";
 import React from "react";
 import Cards from "../../Components/Cards/Cards";
-import styles from "../CardsContainer(home)/CardsContainer.module.css"
-import PropTypes from "prop-types";
+import styles from "../CardsContainer(home)/CardsContainer.module.css";
+import { useSelector } from "react-redux";
 
 function CardsContainer(props) {
+
+// const data = useSelector(state => state.testing)
+// console.log(data);
+
   return (
     <div>
       <section className={styles.features}>
-        {/* <h2 className={styles.srOnly}>Features</h2> */}
         <Cards
           title="You are our #1 priority"
           text=" Need to talk to a representative? You can get in touch through our
@@ -22,7 +25,7 @@ function CardsContainer(props) {
           text="The more you save with us, the higher your interest rate will be!"
           icon={IconMoney}
         />
-          <Cards
+        <Cards
           title="Security you can trust"
           text="We use top of the line encryption to make sure your data and money
           is always safe."

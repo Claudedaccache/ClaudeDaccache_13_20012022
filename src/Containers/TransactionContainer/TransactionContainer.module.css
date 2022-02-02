@@ -34,3 +34,13 @@
   margin-right: 2rem;
   cursor: none;
 }
+
+
+@media (max-width: 450px) {
+  .accordionHeadText > span {
+font-size: 0.8rem; 
+max-width: 2.8rem;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis; }
+}

@@ -28,11 +28,11 @@ const Header = (props) => {
           )) || (
             <>
               <NavLink className={styles.mainNavItem} to="/user/:id">
-                <i className="fa fa-user-circle m-2"></i>
+                <i className="fa fa-user-circle mx-2"></i>
                 {props.userName}
               </NavLink>
               <NavLink className={styles.mainNavItem} to="/">
-                <i className="fa fa-sign-out m-2"></i>
+                <i className="fa fa-sign-out mx-2"></i>
                 Sign Out
               </NavLink>
             </>

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Component } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "../SignInCard/SignInCard.module.css";
@@ -14,8 +14,8 @@ const SignInCard = () => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log("form block")
+    event.preventDefault();
+    console.log("form block");
   };
 
   return (
@@ -45,7 +45,7 @@ const SignInCard = () => {
           <input type="checkbox" id="remember-me" />
           <label htmlFor="remember-me">Remember me</label>
         </div>
-        <Link to="/user/12" className={styles.signInButton}>
+        <Link to="/user/:id" className={styles.signInButton}>
           Sign In
         </Link>
       </form>

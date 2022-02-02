@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import SignIn from "./Pages/SignIn";
 import UserProfile from "./Pages/UserProfile";
-import Transactions from "./Pages/Transactions";
+import Transactions from "./Pages/UserTransactions";
 import { useState } from "react";
 import { hasAuthenticated } from "./Services/AuthApi";
 import Auth from "./Contexts/Auth";
@@ -35,8 +35,7 @@ function App() {
               </AuthenticatedRoute>
             }
           />
-          <Route path="*" element={<ErrorPage/>}/>
-          {/* <Route path="/edit/:id" element={<NameEditing />} /> */}
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     </Auth.Provider>

@@ -38,6 +38,7 @@ function TransactionContainer(props) {
           itemId={"collapseOne"}
           itemDataId={"#collapseOne"}
         />
+          
       </div>
     </div>
   );
