@@ -10,7 +10,6 @@ import AuthenticatedRoute from "./Components/AuthenticatedRoute";
 import ErrorPage from "./Pages/Error";
 import { removeAuthToken } from "./Redux/AuthToken/AuthActions";
 import { useDispatch, useSelector } from "react-redux";
-import { userIsLoggedIn } from "./Redux/isLoggedIn/isAuthActions";
 
 function App() {
   const dispatch = useDispatch();
