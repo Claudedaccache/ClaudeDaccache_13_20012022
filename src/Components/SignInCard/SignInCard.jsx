@@ -1,33 +1,69 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Auth from "../../Contexts/Auth";
+import { addAuthToken, removeAuthToken } from "../../Redux/AuthToken/AuthActions";
+import { userIsLoggedIn } from "../../Redux/isLoggedIn/isAuthActions";
+import { SignIn } from "../../Services/AuthApi";
 import styles from "../SignInCard/SignInCard.module.css";
 
 const SignInCard = () => {
-  // const users = useSelector((state) => state);
-  // console.log(users);
+  const { isAuthenticated, setIsAuthenticated } = useContext(Auth);
+  const AuthToken = useSelector((state) => state.authentificationToken);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleChange = ({ currentTarget }) => {
     const { name, value } = currentTarget;
-    console.log(`${name} : ${value}`);
+    setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("form block");
+
+  const hasAuthenticated = () => {
+    const token = AuthToken;
+    const validToken = token ? true : false;
+
+    if (validToken === false) {
+      dispatch(removeAuthToken());
+    }
+    return validToken;
   };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const token = await SignIn(user);
+      dispatch(addAuthToken(token));
+      setIsAuthenticated(true);
+      const isLogged = dispatch(userIsLoggedIn(hasAuthenticated()))
+      console.log(isLogged);
+    } catch ({ response }) {
+      console.log(response);
+    }
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/user/Profile", { replace: true });
+    }
+  }, [navigate, isAuthenticated]);
 
   return (
     <section className={styles.signInContent}>
       <i className={`fa fa-user-circle ${styles.signInIcon}`}></i>
       <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div className={styles.inputWrapper}>
           <label htmlFor="username">Username</label>
           <input
             type="text"
-            name="username"
+            name="email"
             id="username"
             onChange={handleChange}
           />
@@ -45,9 +81,9 @@ const SignInCard = () => {
           <input type="checkbox" id="remember-me" />
           <label htmlFor="remember-me">Remember me</label>
         </div>
-        <Link to="/user/:id" className={styles.signInButton}>
+        <button className={styles.signInButton} type="submit">
           Sign In
-        </Link>
+        </button>
       </form>
     </section>
   );

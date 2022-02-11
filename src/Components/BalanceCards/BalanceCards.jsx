@@ -12,7 +12,7 @@ function BalanceCards(props) {
           <p className={styles.accountAmountDescription}>{props.accountAmountDescription}</p>
         </div>
         <div className={`${styles.accountContentWrapper} ${styles.cta}`}>
-          <Link to="/user/12/transactions" className={styles.transactionButton}>View transactions</Link>
+          <Link to="/user/Profile/transactions" className={styles.transactionButton}>View transactions</Link>
         </div>
       </section>
   </>;

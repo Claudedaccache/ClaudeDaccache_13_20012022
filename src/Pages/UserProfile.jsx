@@ -1,51 +1,63 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Layout from "../Containers/Layout/Layout";
 import Greeting from "../Components/Greeting/Greeting";
 import BalanceCardsContainer from "../Containers/BalanceCardsContainer/BalanceCardsContainer";
-import { EditContext } from "../Contexts/EditContext";
-import EditName from "../Components/EditName/EditName";
 import { useDispatch, useSelector } from "react-redux";
+import Auth from "../Contexts/Auth";
+import { userProfile } from "../Services/AuthApi";
+import { editFamilyName, editFirstName } from "../Redux/UserNameModification/Actions";
+
 
 function UserProfile(props) {
-  const [showProfile, setShowProfile] = useState(false);
-  const [UserName, setUserName] = useState("Tony");
-  const [UserFamilyName, setUserFamilyName] = useState("Jarvis");
 
- 
-  // const userFirstName = useSelector(state => state.testing)
-  // console.log(userFirstName);
+  const { isAuthenticated } = useContext(Auth);
+  const AuthToken = useSelector((state) => state.authentificationToken);
+  const user = useSelector((state) => state.userNameModification);
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getUserInfo = async () => {
+      if (isAuthenticated) {
+        try {
+          const userInfo = await userProfile(AuthToken.token);
+          dispatch(editFirstName(userInfo.firstName));
+          dispatch(editFamilyName(userInfo.lastName));
+          setIsLoading(false);
+        } catch ({ response }) {
+          console.log(response);
+        }
+      }
+    };
+    getUserInfo();
+  }, [isAuthenticated]);
 
 
 
+
+
+
+  if (!isLoading) {
   return (
     <div>
-      <Layout>
+      <Layout >
         <div className="MainBgContainer">
           <div className="header">
             <h1>Welcome back</h1>
-            <EditContext.Provider
-              value={{
-                UserName,
-                UserFamilyName,
-                setShowProfile,
-                setUserName,
-                setUserFamilyName,
-              }}
-            >
-              {showProfile ? (
-                <EditName/>
-              ) : (
-                <Greeting name={UserName} familyName={UserFamilyName} />
-              )}
-            </EditContext.Provider>
+                   <Greeting
+                    // firstName={user.firstName} lastName={user.lastName}
+              />
           </div>
 
           <BalanceCardsContainer />
         </div>
       </Layout>
     </div>
-  );
+  )}else{
+    return(
+      <div className="loadingMessage">Loading...</div>
+    )
+  }
 }
-
 
 export default UserProfile;

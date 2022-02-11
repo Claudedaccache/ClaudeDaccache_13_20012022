@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
+import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import Auth from "../Contexts/Auth";
 
 const AuthenticatedRoute = ({ children }) => {
   const { isAuthenticated } = useContext(Auth);
+
   const location = useLocation();
   if (!isAuthenticated) {
     return <Navigate to="/user/signIn" state={{ from: location }} />;

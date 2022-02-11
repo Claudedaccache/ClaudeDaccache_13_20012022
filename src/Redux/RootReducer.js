@@ -1,9 +1,12 @@
 import { combineReducers } from "redux";
-import reducer from "./Reducer";
-import UsersReducer from "./UsersFetchedData/UserReducer";
+import AuthToken from "./AuthToken/AuthReducer";
+import loggedInReducer from "./isLoggedIn/isAuthReducer";
+import reducer from "./UserNameModification/Reducer";
 
 const rootReducer = combineReducers({
-  user: UsersReducer,
-  testing: reducer,
+  userNameModification: reducer,
+  authentificationToken: AuthToken,
+  signInAuthentication: loggedInReducer
+
 });
 export default rootReducer;

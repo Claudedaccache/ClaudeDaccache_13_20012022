@@ -18,20 +18,4 @@ export const editFamilyName = (lastName) => {
   };
 };
 
-export const addUserTransactionCategory = (category) => {
-  return {
-    type: actions.ADD_USER_TRANSACTION_CATEGORY,
-    payload: {
-      category,
-    },
-  };
-};
 
-export const addUserTransactionNote = (note) => {
-  return {
-    type: actions.ADD_USER_TRANSACTION_NOTE,
-    payload: {
-      note,
-    },
-  };
-};

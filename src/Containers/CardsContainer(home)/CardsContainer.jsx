@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 function CardsContainer(props) {
 
-// const data = useSelector(state => state.testing)
+// const data = useSelector(state => state.AuthReducer)
 // console.log(data);
 
   return (

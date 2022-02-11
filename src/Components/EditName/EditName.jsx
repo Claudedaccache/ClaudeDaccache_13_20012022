@@ -1,78 +1,99 @@
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import styles from "../EditName/EditName.module.css";
-import { EditContext } from "../../Contexts/EditContext";
+import Greeting from "../Greeting/Greeting";
+import {
+  editFamilyName,
+  editFirstName,
+} from "../../Redux/UserNameModification/Actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function EditName(props) {
-  const {
-    UserName,
-    UserFamilyName,
-    setShowProfile,
-    setUserName,
-    setUserFamilyName,
-  } = useContext(EditContext);
+  const [isEdited, setIsEdited] = useState(true);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userNameModification);
 
-  const handleClick = (e) => {
+  const [UserName, setUserName] = useState({
+    firstName: props.firstName,
+    lastName: props.lastName,
+  });
+  const handleSave = (e) => {
     e.preventDefault();
+    dispatch(editFirstName(UserName.firstName));
+    dispatch(editFamilyName(UserName.lastName));
+    console.log(user);
+    setIsEdited(false);
   };
 
-  return (
-    <>
-      <div className="d-flex flex-row justify-content-center">
-        <div className="mx-2">
-          <form onSubmit={handleClick}>
-            <div className={styles.inputWrapper}>
-              <input
-                type="text"
-                name="name"
-                className={`${styles.inputText}`}
-                placeholder={UserName}
-                onChange={(e) => {
-                  setUserName(e.target.value);
-                }}
-              />
-              <div className={styles.left}>
-                {" "}
-                <button
-                  type="button"
-                  className={`formButton ${styles.saveFormButton}`}
-                  onClick={() => {
-                    setShowProfile(false);
-                  }}
-                >
-                  Save
-                </button>
+  // const handleChange = ({ currentTarget }) => {
+  //   const { name, value } = currentTarget;
+  // setUserName({ ...UserName,
+  //    [name]: value
+  //   });
+
+  // };
+
+  if (isEdited === true) {
+    return (
+      <>
+        <div className="d-flex flex-row justify-content-center">
+          <div className="mx-2">
+            <form>
+              <div className={styles.inputWrapper}>
+                <input
+                  type="text"
+                  name="firstName"
+                  className={`${styles.inputText}`}
+                  placeholder={UserName.firstName}
+                  onChange={(e) =>
+                    setUserName({ ...user, firstName: e.target.value })
+                  }
+                />
+                <div className={styles.left}>
+                  {" "}
+                  <button
+                    type="submit"
+                    className={`formButton ${styles.saveFormButton}`}
+                    onClick={handleSave}
+                  >
+                    Save
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
-        </div>
-        <div className="mx-2">
-          <form onSubmit={handleClick}>
-            <div className={styles.inputWrapper}>
-              <input
-                type="text"
-                name="familyName"
-                className={`${styles.inputText}`}
-                placeholder={UserFamilyName}
-                onChange={(e) => {
-                  setUserFamilyName(e.target.value);
-                }}
-              />
-              <div className={styles.right}>
-                {" "}
-                <button
-                  type="button"
-                  className={`formButton ${styles.cancelFormButton} `}
-                >
-                  Cancel
-                </button>
+            </form>
+          </div>
+          <div className="mx-2">
+            <form>
+              <div className={styles.inputWrapper}>
+                <input
+                  type="text"
+                  name="lastName"
+                  className={`${styles.inputText}`}
+                  placeholder={UserName.lastName}
+                  onChange={(e) =>
+                    setUserName({ ...user, lastName: e.target.value })
+                  }
+                />
+                <div className={styles.right}>
+                  {" "}
+                  <button
+                    type="button"
+                    className={`formButton ${styles.cancelFormButton} `}
+                    onClick={() => {
+                      setIsEdited(false);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else {
+    return <Greeting />;
+  }
 }
 
 EditName.propTypes = {};
