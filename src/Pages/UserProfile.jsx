@@ -3,14 +3,16 @@ import Layout from "../Containers/Layout/Layout";
 import Greeting from "../Components/Greeting/Greeting";
 import BalanceCardsContainer from "../Containers/BalanceCardsContainer/BalanceCardsContainer";
 import { useDispatch, useSelector } from "react-redux";
-import Auth from "../Contexts/Auth";
 import { userProfile } from "../Services/AuthApi";
-import { editFamilyName, editFirstName } from "../Redux/UserNameModification/Actions";
-
+import {
+  editFamilyName,
+  editFirstName,
+} from "../Redux/UserNameModification/Actions";
+import Error from "../Components/Error/Error";
 
 function UserProfile(props) {
+  const isLogged = useSelector(state=>state.signInAuthentication.isLoggedIn)
 
-  const { isAuthenticated } = useContext(Auth);
   const AuthToken = useSelector((state) => state.authentificationToken);
   const user = useSelector((state) => state.userNameModification);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +20,7 @@ function UserProfile(props) {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      if (isAuthenticated) {
+      if (isLogged) {
         try {
           const userInfo = await userProfile(AuthToken.token);
           dispatch(editFirstName(userInfo.firstName));
@@ -30,33 +32,26 @@ function UserProfile(props) {
       }
     };
     getUserInfo();
-  }, [isAuthenticated]);
+  }, [isLogged]);
 
-
-
-
-
-
-  if (!isLoading) {
-  return (
-    <div>
-      <Layout >
-        <div className="MainBgContainer">
-          <div className="header">
-            <h1>Welcome back</h1>
-                   <Greeting
-                    // firstName={user.firstName} lastName={user.lastName}
-              />
+  if (user) {
+    return (
+      <div>
+        <Layout>
+          <div className="MainBgContainer">
+            <div className="header">
+              <h1>Welcome back</h1>
+              <Greeting />
+            </div>
+            <BalanceCardsContainer />
           </div>
-
-          <BalanceCardsContainer />
-        </div>
-      </Layout>
-    </div>
-  )}else{
-    return(
-      <div className="loadingMessage">Loading...</div>
-    )
+        </Layout>
+      </div>
+    );
+  } else if (isLoading || !user) {
+    return <div className="loadingMessage">Loading...</div>;
+  } else {
+    return <Error />;
   }
 }
 

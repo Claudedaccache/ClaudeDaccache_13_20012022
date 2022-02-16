@@ -5,12 +5,11 @@ import {
   editFamilyName,
   editFirstName,
 } from "../../Redux/UserNameModification/Actions";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function EditName(props) {
   const [isEdited, setIsEdited] = useState(true);
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.userNameModification);
 
   const [UserName, setUserName] = useState({
     firstName: props.firstName,
@@ -20,7 +19,6 @@ function EditName(props) {
     e.preventDefault();
     dispatch(editFirstName(UserName.firstName));
     dispatch(editFamilyName(UserName.lastName));
-    console.log(user);
     setIsEdited(false);
   };
 
@@ -37,15 +35,15 @@ function EditName(props) {
       <>
         <div className="d-flex flex-row justify-content-center">
           <div className="mx-2">
-            <form>
+            <form onSubmit={handleSave}>
               <div className={styles.inputWrapper}>
                 <input
                   type="text"
                   name="firstName"
                   className={`${styles.inputText}`}
-                  placeholder={UserName.firstName}
+                  value={UserName.firstName}
                   onChange={(e) =>
-                    setUserName({ ...user, firstName: e.target.value })
+                    setUserName({ ...UserName, firstName: e.target.value })
                   }
                 />
                 <div className={styles.left}>
@@ -62,15 +60,15 @@ function EditName(props) {
             </form>
           </div>
           <div className="mx-2">
-            <form>
+          <form onSubmit={handleSave}>
               <div className={styles.inputWrapper}>
                 <input
                   type="text"
                   name="lastName"
                   className={`${styles.inputText}`}
-                  placeholder={UserName.lastName}
+                  value={UserName.lastName}
                   onChange={(e) =>
-                    setUserName({ ...user, lastName: e.target.value })
+                    setUserName({ ...UserName, lastName: e.target.value })
                   }
                 />
                 <div className={styles.right}>

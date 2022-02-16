@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 function Greeting(props) {
   const user = useSelector((state) => state.userNameModification);
   const [isEdited, setIsEdited] = useState(false);
-
   if (isEdited === false) {
     return (
       <>

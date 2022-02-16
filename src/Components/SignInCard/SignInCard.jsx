@@ -1,14 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Auth from "../../Contexts/Auth";
-import { addAuthToken, removeAuthToken } from "../../Redux/AuthToken/AuthActions";
+import {
+  addAuthToken,
+  removeAuthToken,
+} from "../../Redux/AuthToken/AuthActions";
 import { userIsLoggedIn } from "../../Redux/isLoggedIn/isAuthActions";
 import { SignIn } from "../../Services/AuthApi";
 import styles from "../SignInCard/SignInCard.module.css";
 
 const SignInCard = () => {
-  const { isAuthenticated, setIsAuthenticated } = useContext(Auth);
+  const isLogged = useSelector(
+    (state) => state.signInAuthentication.isLoggedIn
+  );
+
   const AuthToken = useSelector((state) => state.authentificationToken);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,7 +28,6 @@ const SignInCard = () => {
     setUser({ ...user, [name]: value });
   };
 
-
   const hasAuthenticated = () => {
     const token = AuthToken;
     const validToken = token ? true : false;
@@ -34,25 +38,22 @@ const SignInCard = () => {
     return validToken;
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const token = await SignIn(user);
       dispatch(addAuthToken(token));
-      setIsAuthenticated(true);
-      const isLogged = dispatch(userIsLoggedIn(hasAuthenticated()))
-      console.log(isLogged);
+      dispatch(userIsLoggedIn(hasAuthenticated()));
     } catch ({ response }) {
       console.log(response);
     }
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isLogged) {
       navigate("/user/Profile", { replace: true });
     }
-  }, [navigate, isAuthenticated]);
+  }, [navigate, isLogged]);
 
   return (
     <section className={styles.signInContent}>

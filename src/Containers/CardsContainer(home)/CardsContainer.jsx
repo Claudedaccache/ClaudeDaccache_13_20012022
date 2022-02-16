@@ -4,12 +4,8 @@ import IconSecurity from "../../img/icon-security.png";
 import React from "react";
 import Cards from "../../Components/Cards/Cards";
 import styles from "../CardsContainer(home)/CardsContainer.module.css";
-import { useSelector } from "react-redux";
 
 function CardsContainer(props) {
-
-// const data = useSelector(state => state.AuthReducer)
-// console.log(data);
 
   return (
     <div>

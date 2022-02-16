@@ -1,7 +1,6 @@
 import React from "react";
 import BalanceCards from "../../Components/BalanceCards/BalanceCards";
 import styles from "../BalanceCardsContainer/BalanceCardsContainer.module.css"
-import PropTypes from "prop-types";
 
 function BalanceCardsContainer(props) {
   return (

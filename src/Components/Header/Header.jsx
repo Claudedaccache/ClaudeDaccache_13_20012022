@@ -1,54 +1,40 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import styles from "../Header/Header.module.css";
 import BankLogo from "../../img/argentBankLogo.png";
 import { Link, NavLink } from "react-router-dom";
-import Auth from "../../Contexts/Auth";
 import { useDispatch, useSelector } from "react-redux";
 import { removeAuthToken } from "../../Redux/AuthToken/AuthActions";
-import { editFirstName } from "../../Redux/UserNameModification/Actions";
-import { userProfile } from "../../Services/AuthApi";
 import { userIsLoggedOut } from "../../Redux/isLoggedIn/isAuthActions";
 
 const Header = (props) => {
-  const { isAuthenticated, setIsAuthenticated } = useContext(Auth);
-  const dispatch = useDispatch();
-  const AuthToken = useSelector((state) => state.authentificationToken);
-  const user = useSelector((state) => state.userNameModification);
+  const isLogged = useSelector(
+    (state) => state.signInAuthentication.isLoggedIn
+  );
 
-  useEffect(() => {
-    const getUserName = async () => {
-      if (isAuthenticated) {
-        try {
-          const userInfo = await userProfile(AuthToken.token);
-          dispatch(editFirstName(userInfo.firstName));
-        } catch ({ response }) {
-          console.log(response);
-        }
-      }
-    };
-    getUserName();
-  }, [isAuthenticated]);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userNameModification);
 
   const handleSignOut = () => {
     dispatch(removeAuthToken());
-    setIsAuthenticated(false);
-    const signOut = dispatch(userIsLoggedOut());
-    console.log(signOut);
+    dispatch(userIsLoggedOut());
   };
 
   return (
     <div>
       <nav className={styles.mainNav}>
         <div className={styles.mainNavLogo}>
-          <img
-            className={styles.mainNavLogImage}
-            src={BankLogo}
-            alt="Argent Bank Logo"
-          />
+          <Link to="/">
+            <img
+              className={styles.mainNavLogImage}
+              src={BankLogo}
+              alt="Argent Bank Logo"
+            />
+          </Link>
+
           <h1 className={styles.srOnly}>Argent Bank</h1>
         </div>
         <div>
-          {!isAuthenticated ? (
+          {!isLogged ? (
             <>
               <NavLink className={styles.mainNavItem} to="/user/signIn">
                 <i className={`fa fa-user-circle ${styles.userLogo}`}></i>
