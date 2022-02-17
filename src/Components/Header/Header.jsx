@@ -5,7 +5,6 @@ import { Link, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeAuthToken } from "../../Redux/AuthToken/AuthActions";
 import { userIsLoggedOut } from "../../Redux/isLoggedIn/isAuthActions";
-import { userId } from "../../Services/AuthApi";
 
 const Header = (props) => {
   const isLogged = useSelector(
@@ -44,7 +43,7 @@ const Header = (props) => {
             </>
           ) : (
             <>
-              <NavLink className={styles.mainNavItem} to="/user/Profile/">
+              <NavLink className={styles.mainNavItem} to="/user/Profile">
                 <i className="fa fa-user-circle mx-2"></i>
                 {user.firstName}
               </NavLink>

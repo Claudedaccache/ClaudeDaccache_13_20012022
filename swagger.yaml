@@ -12,38 +12,33 @@ paths:
   /user/transactions:
     get:
       tags:
-        - User's transaction Module
-      summary: Transactions
-      description: API for User's transactions
+        - User Module
+      summary: Get a list of all user's transactions
+      description: This endpoint is used to retrieve all user's transactions
       parameters:
-        - in: body
-          name: body
-          description: "transaction of user that needs to be fetched"
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
           required: true
-          type: "string"
-          paramType: "path"
       produces:
         - application/json
-
-
       responses:
         '200':
-          description: transaction loaded Successfully
+          description: transaction retrieved Successfully
           schema:
-            $ref: '#/definitions/transactionResponse'
+            type: array
+            items:
+              $ref: '#/definitions/UserTransactions'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
-
-
-  /user/Transaction:
     put:
       security:
         - Bearer: []
       tags:
-        - User's transaction Module
-      summary: User transaction API
+        - User Module
+      summary: Update a user transactions (category/notes)
       description: Update an existing user transaction
       parameters:
         - in: header
@@ -55,7 +50,9 @@ paths:
           description: Update user's transaction attributes
           required: true
           schema:
-            $ref: '#/definitions/UserTransaction'
+            type: object
+            items:
+            $ref: '#/definitions/TransactionDescription
       produces:
         - application/json
       responses:
@@ -67,27 +64,18 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-
+          
 securityDefinitions:
   Bearer:
     type: apiKey
     name: Authorization
     in: header
 definitions:
-  User:
+  UserTransactions:
+    type: object
     properties:
-      email:
+      id:
         type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-      firstName:
-        type: string
-        description: user first name
-      lastName:
-        type: string
-        description: user last name
       transactionDate:
         type: string
         description: user transaction date
@@ -97,10 +85,27 @@ definitions:
       transactionAmount:
         type: string
         description: user transaction amount
-      Balance:
+      accountBalance:
         type: string
         description: user account Balance
-       
+      transactionType:
+        type: string
+        description: user transaction type  
+      transactionCategory:
+        type: string
+        description: user transaction category  
+      transactionNotes:
+        type: string
+        description: user transaction notes 
+
+  TransactionDescription:
+    type: object
+    properties:
+      transactionCategory:
+        type: string
+      transactionNotes:
+        type: string
+
   ApiResponse:
     type: object
     properties:
@@ -115,27 +120,4 @@ definitions:
             type: string
           email:
             type: string
-
-
-  UserTransaction:
-    type: object
-    properties:
-    transactionDate:
-        type: string
-        description: user transaction date
-      transactionDescription:
-        type: string
-        description: user transaction description
-      transactionAmount:
-        type: string
-        description: user transaction amount
-      Balance:
-        type: string
-        description: user account Balance
-      category:
-        type: string
-        description: user transaction category
-      note:
-        type: string
-        description: user transaction note
 

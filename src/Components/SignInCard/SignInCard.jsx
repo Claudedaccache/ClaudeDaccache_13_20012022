@@ -6,7 +6,7 @@ import {
   removeAuthToken,
 } from "../../Redux/AuthToken/AuthActions";
 import { userIsLoggedIn } from "../../Redux/isLoggedIn/isAuthActions";
-import { SignIn, userId } from "../../Services/AuthApi";
+import { SignIn} from "../../Services/AuthApi";
 import styles from "../SignInCard/SignInCard.module.css";
 
 const SignInCard = () => {
