@@ -29,6 +29,42 @@ export const userProfile = (token) => {
     });
 };
 
+
+
+export const userId = (token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  const bodyParameters = {
+    key: "value",
+  };
+
+  return axios
+    .post("http://localhost:3001/api/v1/user/profile", bodyParameters, config)
+    .then((response) => response.data.body)
+    .then((user) => {
+      console.log(user.id);
+      return user.id
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const EditUserInfo = (token, credentials) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },

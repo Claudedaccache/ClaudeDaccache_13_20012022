@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import Layout from "../Containers/Layout/Layout";
 import Greeting from "../Components/Greeting/Greeting";
 import BalanceCardsContainer from "../Containers/BalanceCardsContainer/BalanceCardsContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { userProfile } from "../Services/AuthApi";
+import {userProfile } from "../Services/AuthApi";
 import {
   editFamilyName,
   editFirstName,
@@ -12,7 +12,6 @@ import Error from "../Components/Error/Error";
 
 function UserProfile(props) {
   const isLogged = useSelector(state=>state.signInAuthentication.isLoggedIn)
-
   const AuthToken = useSelector((state) => state.authentificationToken);
   const user = useSelector((state) => state.userNameModification);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +32,7 @@ function UserProfile(props) {
     };
     getUserInfo();
   }, [isLogged]);
+
 
   if (user) {
     return (

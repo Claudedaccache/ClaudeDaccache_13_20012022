@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Layout from "../Containers/Layout/Layout";
 import SignInCard from "../Components/SignInCard/SignInCard";
 
@@ -15,6 +14,5 @@ function SignIn(props) {
   );
 }
 
-SignIn.propTypes = {};
 
 export default SignIn;

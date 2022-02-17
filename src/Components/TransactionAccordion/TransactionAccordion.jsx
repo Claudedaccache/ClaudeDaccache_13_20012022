@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../TransactionAccordion/TransactionAccordion.module.css";
-import PropTypes from "prop-types";
 
 const TransactionAccordion = (props) => {
   const displayDropdown = (container) => {

@@ -22,14 +22,6 @@ function EditName(props) {
     setIsEdited(false);
   };
 
-  // const handleChange = ({ currentTarget }) => {
-  //   const { name, value } = currentTarget;
-  // setUserName({ ...UserName,
-  //    [name]: value
-  //   });
-
-  // };
-
   if (isEdited === true) {
     return (
       <>
@@ -60,7 +52,7 @@ function EditName(props) {
             </form>
           </div>
           <div className="mx-2">
-          <form onSubmit={handleSave}>
+            <form onSubmit={handleSave}>
               <div className={styles.inputWrapper}>
                 <input
                   type="text"

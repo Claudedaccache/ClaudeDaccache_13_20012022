@@ -6,7 +6,7 @@ import {
   removeAuthToken,
 } from "../../Redux/AuthToken/AuthActions";
 import { userIsLoggedIn } from "../../Redux/isLoggedIn/isAuthActions";
-import { SignIn } from "../../Services/AuthApi";
+import { SignIn, userId } from "../../Services/AuthApi";
 import styles from "../SignInCard/SignInCard.module.css";
 
 const SignInCard = () => {
@@ -31,7 +31,6 @@ const SignInCard = () => {
   const hasAuthenticated = () => {
     const token = AuthToken;
     const validToken = token ? true : false;
-
     if (validToken === false) {
       dispatch(removeAuthToken());
     }
