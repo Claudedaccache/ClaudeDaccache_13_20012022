@@ -5,10 +5,13 @@ import {
   editFamilyName,
   editFirstName,
 } from "../../Redux/UserNameModification/Actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { EditUserInfo } from "../../Services/AuthApi";
 
 function EditName(props) {
   const [isEdited, setIsEdited] = useState(true);
+  const AuthToken = useSelector((state) => state.authentificationToken.token);
+
   const dispatch = useDispatch();
 
   const [UserName, setUserName] = useState({
@@ -17,8 +20,11 @@ function EditName(props) {
   });
   const handleSave = (e) => {
     e.preventDefault();
-    dispatch(editFirstName(UserName.firstName));
-    dispatch(editFamilyName(UserName.lastName));
+    EditUserInfo(AuthToken, UserName).then((user) => {
+      dispatch(editFirstName(user.firstName));
+      dispatch(editFamilyName(user.lastName));
+    });
+
     setIsEdited(false);
   };
 

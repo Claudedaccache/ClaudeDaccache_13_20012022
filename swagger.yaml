@@ -34,8 +34,6 @@ paths:
         '500':
           description: Internal Server Error
     put:
-      security:
-        - Bearer: []
       tags:
         - User Module
       summary: Update a user transactions (category/notes)
@@ -64,6 +62,8 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+      security:
+        - Bearer: []
           
 securityDefinitions:
   Bearer:
