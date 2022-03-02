@@ -117,7 +117,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Transaction
+        - User Transactions
       summary: Get a list of all user's transactions according to the on going month
       description: This endpoint is used to retrieve all user's transactions  according to the on going month
       parameters:
@@ -143,8 +143,8 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Transaction
-      summary: Update a user transactions (category/notes)
+        - User Transactions
+      summary: Update a user transaction (category/notes)
       description: Update an existing user transaction
       parameters:
         - in: header
@@ -176,8 +176,8 @@ paths:
       security:
         - Bearer: []
       tags:
-        - User Transaction
-      summary: Get a transaction by id
+        - User Transactions
+      summary: Get a transaction by Id
       description: This endpoint is used to retrieve a transaction's details according to its Id
       operationId: getTransactionById
       parameters:
@@ -186,7 +186,6 @@ paths:
           description: ID of a transaction to return
           required: true
           type: string
-
       responses:
         '200':
           description: transaction's details retrieved successully
@@ -243,6 +242,7 @@ definitions:
     properties:
       token:
         type: string
+        
   UserProfile:
     type: object
     properties:
