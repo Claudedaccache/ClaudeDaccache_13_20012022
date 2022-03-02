@@ -45,7 +45,6 @@ function EditName(props) {
                   }
                 />
                 <div className={styles.left}>
-                  {" "}
                   <button
                     type="submit"
                     className={`formButton ${styles.saveFormButton}`}
@@ -70,7 +69,6 @@ function EditName(props) {
                   }
                 />
                 <div className={styles.right}>
-                  {" "}
                   <button
                     type="button"
                     className={`formButton ${styles.cancelFormButton} `}

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Layout from "../Containers/Layout/Layout";
 import CoverImg from "../Components/CoverImg/CoverImg";
 import CardsContainer from "../Containers/CardsContainer(home)/CardsContainer";
