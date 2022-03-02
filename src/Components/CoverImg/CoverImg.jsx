@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from "../CoverImg/CoverImg.module.css"
 
 function CoverImg(props) {
@@ -17,7 +16,5 @@ function CoverImg(props) {
 
   </div>;
 }
-
-CoverImg.propTypes = {};
 
 export default CoverImg;

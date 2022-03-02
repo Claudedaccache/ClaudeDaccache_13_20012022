@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styles from "../Cards/Cards.module.css"
 
 
@@ -16,7 +15,5 @@ function Cards(props) {
     </>
   );
 }
-
-Cards.propTypes = {};
 
 export default Cards;

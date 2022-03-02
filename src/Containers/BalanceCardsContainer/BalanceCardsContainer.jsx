@@ -24,6 +24,5 @@ function BalanceCardsContainer(props) {
   );
 }
 
-BalanceCardsContainer.propTypes = {};
 
 export default BalanceCardsContainer;

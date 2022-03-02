@@ -32,6 +32,4 @@ function CardsContainer(props) {
   );
 }
 
-CardsContainer.propTypes = {};
-
 export default CardsContainer;

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Layout from "../Containers/Layout/Layout";
 import TransactionBalance from "../Components/TransactionBalance/TransactionBalance";
 import TransactionContainer from "../Containers/TransactionContainer/TransactionContainer";
@@ -20,7 +19,5 @@ function Transactions(props) {
     </div>
   );
 }
-
-Transactions.propTypes = {};
 
 export default Transactions;

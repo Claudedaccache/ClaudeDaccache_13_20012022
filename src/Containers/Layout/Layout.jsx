@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
-import PropTypes from "prop-types";
 
 function Layout(props) {
   return (
@@ -13,6 +12,5 @@ function Layout(props) {
   );
 }
 
-Layout.propTypes = {};
 
 export default Layout;

@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../TransactionBalance/TransactionBalance.module.css"
-import PropTypes from "prop-types";
 
 function TransactionBalance(props) {
   return (
@@ -17,7 +16,5 @@ function TransactionBalance(props) {
     </div>
   );
 }
-
-TransactionBalance.propTypes = {};
 
 export default TransactionBalance;

@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "../TransactionContainer/TransactionContainer.module.css";
 import TransactionAccordion from "../../Components/TransactionAccordion/TransactionAccordion";
-import PropTypes from "prop-types";
 
 function TransactionContainer(props) {
   return (
@@ -43,7 +42,5 @@ function TransactionContainer(props) {
     </div>
   );
 }
-
-TransactionContainer.propTypes = {};
 
 export default TransactionContainer;

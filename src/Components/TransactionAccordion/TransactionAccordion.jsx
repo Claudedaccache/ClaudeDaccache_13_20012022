@@ -89,6 +89,4 @@ const TransactionAccordion = (props) => {
   );
 };
 
-TransactionAccordion.propTypes = {};
-
 export default TransactionAccordion;

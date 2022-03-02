@@ -90,6 +90,4 @@ function EditName(props) {
   }
 }
 
-EditName.propTypes = {};
-
 export default EditName;

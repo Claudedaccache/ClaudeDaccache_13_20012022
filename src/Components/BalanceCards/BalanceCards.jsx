@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from "../BalanceCards/BalanceCards.module.css"
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function BalanceCards(props) {
@@ -18,6 +17,5 @@ function BalanceCards(props) {
   </>;
 }
 
-BalanceCards.propTypes = {};
 
 export default BalanceCards;
