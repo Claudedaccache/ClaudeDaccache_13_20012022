@@ -14,7 +14,7 @@ Follow the instructions mentioned in the "README.md" file to run it.
 
 -Frontend side:
 
-Copy the repository link "t"
+Copy the repository link "https://github.com/Claudedaccache/ClaudeDaccache_13_20012022.git"
 Clone it on your computer
 Go to the "argentbank" folder
 The npm install command will allow you to install the dependencies
