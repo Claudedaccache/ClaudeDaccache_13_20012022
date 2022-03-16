@@ -150,7 +150,7 @@ paths:
         '500':
           description: Internal Server Error        
 
-  /user/account/{accountId}/{currentMonth}/transactions/{transactionId}:
+  /user/account/{accountId}/transactions/{transactionId}:
     post:
       security:
         - Bearer: []
@@ -165,21 +165,17 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
-        - name: transactionId
-          in: path
-          description: ID of a transaction to return
-          required: true
-          type: string
         - name: accountId
           in: path
           description: ID of the account selected
           required: true
           type: string
-        - name: currentMonth
+        - name: transactionId
           in: path
-          description: month to display transactions 
+          description: ID of a transaction to return
           required: true
           type: string
+
       responses:
         '200':
           description: transaction's details retrieved successully
@@ -202,19 +198,14 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
-        - name: transactionId
-          in: path
-          description: ID of a transaction to return
-          required: true
-          type: string
         - name: accountId
           in: path
           description: ID of the account selected
           required: true
           type: string
-        - name: currentMonth
+        - name: transactionId
           in: path
-          description: month of displayed transactions 
+          description: ID of a transaction to return
           required: true
           type: string
         - in: body
@@ -250,19 +241,14 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
-        - name: transactionId
-          in: path
-          description: ID of a transaction to be deleted
-          required: true
-          type: string
         - name: accountId
           in: path
           description: ID of the account selected
           required: true
           type: string
-        - name: currentMonth
+        - name: transactionId
           in: path
-          description: month of displayed transactions 
+          description: ID of a transaction to be deleted
           required: true
           type: string
       produces:
